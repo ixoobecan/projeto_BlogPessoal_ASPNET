@@ -34,7 +34,8 @@ namespace BlogAPI
             // Repositorios
             _ = services.AddScoped<IUsuario, UsuarioRepositorio>();
             _ = services.AddScoped<ITema, TemaRepositorio>();
-            
+            services.AddScoped<IPostagem, PostagemRepositorio>();
+
             // Controladores
             services.AddCors();
             _ = services.AddControllers();
