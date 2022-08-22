@@ -7,7 +7,12 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlogAPI.Scr.Repositorios.Implementacoes
-{
+{/// <summary>
+/// <para>Resumo: Classe responsavel por implementar ITema</para>
+/// <para>Criado por: Samira Ixoobecan por Gustavo Boaz (Generation)</para>
+/// <para>Versão: 1.0</para>
+/// <para>Data: 22/08/2022</para>
+/// </summary>
     public class TemaRepositorio : ITema
     {
         #region Atributos
@@ -22,6 +27,10 @@ namespace BlogAPI.Scr.Repositorios.Implementacoes
         #endregion Construtores
 
         #region Métodos
+        /// <summary>
+        /// <para>Resumo: Método assíncrono para atualizar um tema</para>
+        /// </summary>
+        /// <param name="tema">Construtor para atualizar tema</param>
         public async Task AtualizarTemaAsync(Tema tema)
         {
             var auxiliar = await PegarTemaPeloIdAsync(tema.Id);
@@ -31,19 +40,30 @@ namespace BlogAPI.Scr.Repositorios.Implementacoes
             _contexto.Temas.Update(auxiliar);
             await _contexto.SaveChangesAsync();
         }
-
+        /// <summary>
+        /// <para>Resumo: Método assíncrono para deletar um tema</para>
+        /// </summary>
+        /// <param name="id">Id do tema</param>
         public async Task DeletarTemaAsync(int id)
         {
             _contexto.Temas.Remove(await PegarTemaPeloIdAsync(id));
             await _contexto.SaveChangesAsync();
         }
-
+        /// <summary>
+        /// <para>Resumo: Método assíncrono para salvar um novo tema</para>
+        /// </summary>
+        /// <param name="tema">Construtor para cadastrar tema</param>
         public async Task NovoTemaAsync(Tema tema)
         {
             await _contexto.Temas.AddAsync(new Tema { Descricao = tema.Descricao });
             await _contexto.SaveChangesAsync();
         }
-
+        /// <summary>
+        /// <para>Resumo: Método assíncrono para pegar um tema pelo Id</para>
+        /// </summary>
+        /// <param name="id">Id do tema</param>
+        /// <return>TemaModelo</return>
+        /// <exception cref="Exception">Id não pode ser nulo</exception>
         public async Task<Tema> PegarTemaPeloIdAsync(int id)
         {
             if (!ExisteId(id)) throw new Exception("Id do tema não encontrado");
@@ -56,6 +76,10 @@ namespace BlogAPI.Scr.Repositorios.Implementacoes
                 return auxiliar != null;
             }
         }
+        /// <summary>
+        /// <para>Resumo: Método assíncrono para pegar todos temas</para>
+        /// </summary>
+        /// <return>Lista TemaModelo</return>
         public async Task<List<Tema>> PegarTodosTemasAsync()
         {
             return await _contexto.Temas.ToListAsync();

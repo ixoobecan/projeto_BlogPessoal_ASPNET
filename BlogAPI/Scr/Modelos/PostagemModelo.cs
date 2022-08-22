@@ -2,7 +2,12 @@
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlogAPI.Scr.Modelos
-{
+{/// <summary>
+/// <para>Resumo: Classe responsavel por representar tb_postagens no banco.</para>
+/// <para>Criado por:Samira Ixoobecan por Gustavo Boaz (Generation)</para>
+/// <para>Versão: 1.0</para>
+/// <para>Data: 22/08/2022</para>
+/// </summary>
     [Table("tb_postagens")]
     public class Postagem
     {
